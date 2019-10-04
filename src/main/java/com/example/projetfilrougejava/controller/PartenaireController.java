@@ -40,10 +40,45 @@ public class PartenaireController {
     public void ajouterPartenaire(@RequestBody FormPartenaire partenair){
             Partenaire part=new Partenaire();
             part.setNinea(partenair.getNinea());
-            part.getNomComplet(partenair.getNomComplet());
-            part.getRaisonSociale(partenair.getRaisonSociale());
-            part.getAdresse(partenair.getAdresse());
-            part.getTelephone(partenair.getTelephone());
+            part.setNomComplet(partenair.getNomComplet());
+            part.setRaisonSociale(partenair.getRaisonSociale());
+            part.setAdresse(partenair.getAdresse());
+            part.setTelephone(partenair.getTelephone());
+            part.setEmail(partenair.getEmail());
+            part.setStatut("actif");
+        partenaireRepository.save(part);
+            Compte compte=new Compte();
+        SimpleDateFormat formater = new SimpleDateFormat("yyyyMMddhhmmss");
+        Date now=new Date();
+         compte.setNumCompte(partenair.getNumCompte());
+         compte.setSolde(partenair.getSolde());//numcompte=formater.format(now);
+         compte.setDateCreation(now);
+        //part.setId(partenair.getPartenaire());
+        compte.setPartenaire(part);
+        compteRepository.save(compte);
+
+        User user=new User();
+        user.setUsername(partenair.getUsername());
+        user.setPassword(passwordEncoder.encode(partenair.getPassword()));
+        user.setAdresse(partenair.getAdresse());
+        user.setEmail(partenair.getEmail());
+        user.setName(partenair.getName());
+        user.setStatut("actif");
+        user.setTelephone(partenair.getTelephone());
+        user.setPhoto(partenair.getPhoto());
+        //compte.setId(partenair.getCompte());
+        user.setCompte(compte);
+        //part.setId(partenair.getPartenaire());
+        user.setPartenaire(part);
+        Role userRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+                .orElseThrow(() -> new ApplicationContextException("User Role not set."));
+
+        user.setRoles(Collections.singleton(userRole));
+
+        userRepository.save(user);
+
+
+
 
          /*partenaireRepository.save(partenaire);
          User user=new User();

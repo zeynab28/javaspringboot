@@ -1,7 +1,6 @@
 package com.example.projetfilrougejava.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -41,6 +40,16 @@ public class Compte implements Serializable {
     private Date dateCreation;
 
     // private Collection<Operation> operations;
+   /* @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy ="compte")
+    @JsonIgnoreProperties("compte")
+    private List<Depot> depot;*/
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy ="compte")
+    @JsonIgnoreProperties("compte")
+    private List<Depot> depot;
 
     public Compte() {
     }
@@ -99,5 +108,13 @@ public class Compte implements Serializable {
 
     public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+    public List<Depot> getDepot() {
+        return depot;
+    }
+
+    public void setDepot(List<Depot> depot) {
+        this.depot = depot;
     }
 }

@@ -148,8 +148,8 @@ public class Partenaire implements Serializable {
         this.adresse = adresse;
     }
 
-    public String getStatut() {
-        return statut;
+    public String getStatut(String statut) {
+        return this.statut;
     }
 
     public void setStatut(String statut) {

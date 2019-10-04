@@ -8,9 +8,19 @@ public class FormPartenaire {
     private Long partenaire;
     private String numCompte;
     private Integer solde ;
+    private String name;
+    private String username;
+    private String email;
+    private String emailp;
+    private String password;
+    private String telephone;
+    private String telephonep;
+    private String statut;
     private Long compte;
     private String adresse;
-
+    private String adressep;
+    private String ninea;
+    private String nomComplet;
     public String getAdresse() {
         return adresse;
     }
@@ -19,13 +29,45 @@ public class FormPartenaire {
         this.adresse = adresse;
     }
 
-    private String name;
-    private String username;
-    private String email;
-    private String password;
-    private String telephone;
-    private String statut;
+
+    public String getStatutp() {
+        return statutp;
+    }
+
+    public void setStatutp(String statutp) {
+        this.statutp = statutp;
+    }
+
+    public String getEmailp() {
+        return emailp;
+    }
+
+    public void setEmailp(String emailp) {
+        this.emailp = emailp;
+    }
+
+    public String getTelephonep() {
+        return telephonep;
+    }
+
+    public void setTelephonep(String telephonep) {
+        this.telephonep = telephonep;
+    }
+
+    private String statutp;
     private  String raisonSociale;
+
+    public String getAdressep() {
+        return adressep;
+    }
+
+    public void setAdressep(String adressep) {
+        this.adressep = adressep;
+    }
+
+    public FormPartenaire() {
+    }
+
     public String getNomComplet() {
         return nomComplet;
     }
@@ -43,9 +85,6 @@ public class FormPartenaire {
         this.ninea = ninea;
     }
 
-    private String ninea;
-
-    private String nomComplet;
 
     public Integer getSolde() {
         return solde;

@@ -2,6 +2,7 @@ package com.example.projetfilrougejava.modele;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -74,6 +76,17 @@ public class User implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JsonIgnoreProperties("users")
     private Compte compte;
+  /*  @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy ="users")
+    @JsonIgnoreProperties("users")
+    private List<Depot> depot;*/
+  @OneToMany(cascade = CascadeType.ALL,
+          // = FetchType.LAZY,
+          mappedBy ="user")
+  @JsonIgnore
+  // @JsonIgnoreProperties("user")
+  private List<Depot> depot;
 
     public String getTelephone() {
         return telephone;
@@ -184,5 +197,13 @@ public class User implements Serializable {
 
     public void setCompte(Compte compte) {
         this.compte = compte;
+    }
+
+    public List<Depot> getDepot() {
+        return depot;
+    }
+
+    public void setDepot(List<Depot> depot) {
+        this.depot = depot;
     }
 }

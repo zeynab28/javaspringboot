@@ -1,5 +1,8 @@
 package com.example.projetfilrougejava;
 
+import com.example.projetfilrougejava.repository.CompteRepository;
+import com.example.projetfilrougejava.repository.PartenaireRepository;
+import com.example.projetfilrougejava.repository.UserRepository;
 import com.example.projetfilrougejava.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,4 +26,19 @@ public class ProjetfilrougejavaApplication extends ServletInitializer implements
 	public void run(String... args) throws Exception {
 		System.out.println(encoder.encode("passer"));
 	}
+
+
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private PartenaireRepository partenaireRepository;
+
+	@Autowired
+	private CompteRepository compteRepository;
+
+
+
+
 }
