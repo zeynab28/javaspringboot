@@ -58,6 +58,7 @@ public class DepotController {
         depot.setUser(user);
         Compte compte = compteRepository.findCompteByNumCompte(dep.getNumbcompte()).orElseThrow(() -> new ApplicationContextException("Compte  not found."));
         compte.setSolde((int) (compte.getSolde()+dep.getMontant()));
+        depot.setCompte(compte);
         depotRepository.save(depot);
 
         return new ResponseEntity<>("depot effecteuer",HttpStatus.OK);
